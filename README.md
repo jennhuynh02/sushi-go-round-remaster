@@ -1,7 +1,10 @@
 # 🍣 Sushi-Go-Round Remaster (WIP)
+A modern remaster of my original bootcamp-era Sushi-Go-Round game.
 
-A modern remaster of my original bootcamp-era Sushi-Go-Round game.  
-This project is being rebuilt with **React + TypeScript + Vite**, and a custom HTML5 Canvas game engine.  
+Originally, when working on this project, the assignment was to demonstrate my understanding of object-oriented programming in vanilla JavaScript on the DOM.
+
+Now, with more polished skills in the frontend, I would like to remaster this game to pay tribute to my friends who played the first rendition of this silly game; all the while talking to me and supporting my career in software engineering.
+
 
 The goal: take a working prototype and evolve it into a polished, production-quality web game —  
 showcasing **clean architecture, modern tooling, accessibility, and UI/UX polish.**
@@ -9,12 +12,13 @@ showcasing **clean architecture, modern tooling, accessibility, and UI/UX polish
 ---
 
 ## 🚀 Tech Stack
+This project is being rebuilt with **React + TypeScript + Vite**, and a custom HTML5 Canvas game engine.
+
 - [Vite](https://vitejs.dev/) – lightning-fast dev server & build
 - [React](https://react.dev/) – shell UI (menus, settings, leaderboard)
 - [TypeScript](https://www.typescriptlang.org/) – typed game engine
 - HTML5 Canvas – rendering layer for the game loop
-- ESLint + Prettier – code quality
-- (Planned) Tailwind CSS – quick UI styling
+- Tailwind CSS – quick UI styling
 - (Planned) Supabase – global leaderboard
 
 ---
