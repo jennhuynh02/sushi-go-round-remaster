@@ -1,5 +1,5 @@
 # 🍣 Sushi-Go-Round Remaster (WIP)
-A modern remaster of my original bootcamp-era Sushi-Go-Round game.
+A modern remaster of my original bootcamp-era [Sushi-Go-Round](https://github.com/jennhuynh02/Sushi-Go-Round) game.
 
 Originally, when working on this project, the assignment was to demonstrate my understanding of object-oriented programming in vanilla JavaScript on the DOM.
 
