@@ -39,3 +39,14 @@ git clone https://github.com/jennhuynh02/sushi-go-round-remaster.git
 cd sushi-go-round-remaster
 npm install
 npm run dev
+```
+
+## Learnings
+Moving off of OOP and leveraging TypeScript instead:
+
+- TypeScript isn’t *class-first* — it uses **structural typing**, letting us model behavior with **plain data**, **functions**, **unions**, and **interfaces**.  
+- **Interfaces & type aliases** provide clear shape safety without inheritance.  
+- **Discriminated unions** replace complex class hierarchies with clean, type-safe branching.  
+- **Generics** enable reusable, flexible helpers for shared logic.  
+- **`satisfies`** and **exhaustiveness checks** ensure all cases are covered at compile time.  
+- **Readonly and immutability utilities** help maintain predictable, pure logic.  
