@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react";
+import { drawConveyorTile } from '../game/conveyorTile';
+
 import { createBoard, stepBelt, type BoardState } from "../game/board";
 
 type Props = {
@@ -23,7 +25,7 @@ const GameCanvas = ({ isPlaying }: Props) => {
     canvas.width = 600;
     canvas.height = 600;
 
-    boardRef.current = createBoard(100, 10, 10, 28);
+    boardRef.current = createBoard(100, 10, 10, 35);
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -96,12 +98,10 @@ const drawBoard = (
   ctx.fillRect(l, b, 100, 100);
   ctx.fillRect(r, b, 100, 100);
 
+
   for (const idx of board.items) {
     const [x, y] = board.loopPath[Math.floor(idx)];
-    ctx.fillStyle = "#f59e0b";
-    ctx.beginPath();
-    ctx.arc(x, y, 12, 0, Math.PI * 2);
-    ctx.fill();
+    drawConveyorTile(ctx, x, y, 100);
   }
 
   ctx.restore();
