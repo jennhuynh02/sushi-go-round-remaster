@@ -15,7 +15,7 @@ export const buildPerimeterPath = (tileSize: number, cols = 10, rows = 10): Vec2
 };
 
 export const createBoard = (tileSize = 100, cols = 10, rows = 10, itemCount = 28): BoardState => {
-  const loopPath = buildPerimeterPath(tileSize, cols, rows);
+  const loopPath = buildPerimeterPath(tileSize, cols - 1, rows - 1);
   const spacing = Math.floor(loopPath.length / itemCount);
   return {
     cols, rows, tileSize, loopPath,
