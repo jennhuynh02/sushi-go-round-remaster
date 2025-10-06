@@ -50,11 +50,11 @@ export function GameControls({
           </div>
           <div className="space-y-1 text-xs text-pink-700">
             <div className="flex justify-between">
-              <span>Move Lickitung:</span>
+              <span>Move Monster:</span>
               <span className="font-mono bg-purple-100 text-purple-800 px-1 rounded text-xs">↑↓←→</span>
             </div>
             <div className="flex justify-between">
-              <span>Lick Berry:</span>
+              <span>Eat Sushi:</span>
               <span className="font-mono bg-purple-100 text-purple-800 px-1 rounded text-xs">Space</span>
             </div>
             <div className="flex justify-between">
@@ -69,7 +69,7 @@ export function GameControls({
             onClick={onShowInstructions}
             className="w-full h-6 text-xs border-purple-300 text-purple-700 hover:bg-purple-100"
           >
-            👅 Battle Guide
+            🗺️ Battle Guide
           </Button>
         </CardContent>
       </Card>

@@ -1,6 +1,20 @@
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Play, Pause, RotateCcw, HelpCircle, BookOpen } from "lucide-react";
+import sushiGif from "../assets/sushi_bounce.gif"; // adjust path if needed
+
+export function GameHeaderTitle() {
+  return (
+    <h1 className="text-lg font-bold flex items-center gap-2">
+      <img
+        src={sushiGif}
+        alt="Sushi logo"
+        className="w-6 h-6 select-none pointer-events-none"
+      />
+      Sushi Go Round
+    </h1>
+  );
+}
 
 interface GameHeaderProps {
   isPlaying: boolean;
@@ -10,7 +24,6 @@ interface GameHeaderProps {
   onShowStory: () => void;
   currentScore: number;
   level: number;
-  lives: number;
 }
 
 export function GameHeader({ 
@@ -21,22 +34,19 @@ export function GameHeader({
   onShowStory,
   currentScore, 
   level, 
-  lives
 }: GameHeaderProps) {
   return (
     <div className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-600 text-white p-2 rounded-lg shadow-sm border-2 border-slate-500">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <h1 className="text-lg font-bold">🍣 Sushi Go Round</h1>
+          
+          <GameHeaderTitle />
           <div className="flex gap-2 items-center">
             <Badge variant="secondary" className="bg-amber-600/80 text-slate-100 border-amber-500 text-xs font-bold">
               Round {level}
             </Badge>
             <Badge variant="secondary" className="bg-emerald-600/80 text-slate-100 border-emerald-500 text-xs font-bold">
               {currentScore.toLocaleString()}
-            </Badge>
-            <Badge variant="secondary" className="bg-red-600/80 text-white border-red-500 text-xs font-bold">
-              ❤️{lives}
             </Badge>
           </div>
         </div>

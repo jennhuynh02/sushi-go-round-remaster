@@ -25,4 +25,5 @@ export function drawConveyorTile(
   ctx.strokeStyle = 'rgba(255,255,255,0.4)';
   ctx.lineWidth = 2;
   ctx.strokeRect(x, y, size, size);
+
 }
