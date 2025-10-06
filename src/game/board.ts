@@ -28,3 +28,32 @@ export const stepBelt = (s: BoardState): BoardState => {
   const len = s.loopPath.length;
   return { ...s, items: s.items.map(i => (i + s.speedPx) % len) };
 };
+
+export function drawBeltUnderlay(
+  ctx: CanvasRenderingContext2D,
+  path: [number, number][],
+  width: number
+) {
+  if (!path.length) return;
+  ctx.save();
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "#0f172a"; // dark navy tone under the belt
+  ctx.lineWidth = width;
+  ctx.shadowColor = "rgba(0,0,0,0.25)";
+  ctx.shadowBlur = 6;
+
+  ctx.beginPath();
+  ctx.moveTo(path[0][0], path[0][1]);
+  for (let i = 1; i < path.length; i++) ctx.lineTo(path[i][0], path[i][1]);
+  ctx.closePath();
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+export const getUnderlayPath = (s: BoardState): Vec2[] =>
+  s.loopPath.map(([x, y]) => [x + s.tileSize / 2, y + s.tileSize / 2]);
+
+export const getUnderlayWidth = (s: BoardState): number =>
+  Math.round(s.tileSize * 0.38);

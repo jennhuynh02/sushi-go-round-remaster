@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { drawConveyorTile } from '../game/conveyorTile';
 
-import { createBoard, stepBelt, type BoardState } from "../game/board";
+import { createBoard, drawBeltUnderlay, getUnderlayPath, getUnderlayWidth, stepBelt, type BoardState } from "../game/board";
 import { drawBomb, initBombSprite } from "../game/bombSprite";
 
 type Props = {
@@ -70,6 +70,7 @@ const GameCanvas = ({ isPlaying }: Props) => {
 
 export default GameCanvas;
 
+
 const drawBoard = (
   ctx: CanvasRenderingContext2D,
   board: BoardState,
@@ -100,14 +101,15 @@ const drawBoard = (
   ctx.fillRect(r, t, 100, 100);
   ctx.fillRect(l, b, 100, 100);
   ctx.fillRect(r, b, 100, 100);
+  
 
+  drawBeltUnderlay(ctx, getUnderlayPath(board), getUnderlayWidth(board));
 
-  for (const idx of board.items) {
+  board.items.forEach((idx, i) => {
     const [x, y] = board.loopPath[Math.floor(idx)];
     drawConveyorTile(ctx, x, y, 100);
-    drawBomb(ctx, x + 50, y + 50, 60, true);
-    }
-    
+    if (i % 5 === 0) drawBomb(ctx, x + 25, y + 25, 50);
+  });
 
   ctx.restore();
 };
