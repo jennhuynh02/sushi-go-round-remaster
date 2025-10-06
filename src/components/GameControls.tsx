@@ -1,7 +1,5 @@
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
-import { Slider } from "./ui/slider";
-import { Label } from "./ui/label";
 import { Keyboard, Gamepad2 } from "lucide-react";
 
 interface GameControlsProps {
@@ -11,11 +9,9 @@ interface GameControlsProps {
 }
 
 export function GameControls({
-  difficulty,
-  onDifficultyChange,
+
   onShowInstructions
 }: GameControlsProps) {
-  const difficultyLabels = ['Easy', 'Normal', 'Hard', 'Expert'];
 
   return (
     <div className="space-y-2">
@@ -24,20 +20,13 @@ export function GameControls({
         <CardContent className="space-y-2 p-0">
           <div className="flex items-center gap-1">
             <Gamepad2 className="h-3 w-3 text-purple-600" />
-            <span className="text-xs font-medium text-purple-800">Battle Settings</span>
+            <span className="text-xs font-medium text-purple-800">Battle Guide</span>
           </div>
-          <div className="space-y-1">
-            <Label className="text-xs text-purple-700">Difficulty: {difficultyLabels[difficulty - 1]}</Label>
-            <Slider
-              value={[difficulty]}
-              onValueChange={(value) => onDifficultyChange(value[0])}
-              min={1}
-              max={4}
-              step={1}
-              className="h-4"
-            />
-            <div className="text-xs text-purple-600">Higher levels spawn berries faster</div>
-          </div>
+          <ul className="list-disc ml-1 text-xs text-purple-700 space-y-1">
+            <li>🎯 Catch sushi 🍣 as it moves around the conveyor.</li>
+            <li>💥 Avoid bombs 💣 and chilis 🌶️ — they lower your score!</li>
+            <li>⚡ Levels get faster over time; difficulty increases automatically ⌛️ — stay alive as long as you can to climb rounds.</li>
+          </ul>
         </CardContent>
       </Card>
 
@@ -46,7 +35,7 @@ export function GameControls({
         <CardContent className="space-y-2 p-0">
           <div className="flex items-center gap-1">
             <Keyboard className="h-3 w-3 text-pink-600" />
-            <span className="text-xs font-medium text-pink-800">Trainer Controls</span>
+            <span className="text-xs font-medium text-pink-800">Gamer Controls</span>
           </div>
           <div className="space-y-1 text-xs text-pink-700">
             <div className="flex justify-between">
@@ -62,10 +51,10 @@ export function GameControls({
               <span className="font-mono bg-purple-100 text-purple-800 px-1 rounded text-xs">P</span>
             </div>
           </div>
-          
-          <Button 
-            variant="outline" 
-            size="sm" 
+
+          <Button
+            variant="outline"
+            size="sm"
             onClick={onShowInstructions}
             className="w-full h-6 text-xs border-purple-300 text-purple-700 hover:bg-purple-100"
           >
