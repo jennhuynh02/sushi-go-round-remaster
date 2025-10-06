@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { drawConveyorTile } from '../game/conveyorTile';
 
 import { createBoard, stepBelt, type BoardState } from "../game/board";
+import { drawBomb, initBombSprite } from "../game/bombSprite";
 
 type Props = {
   isPlaying: boolean;
@@ -25,12 +26,14 @@ const GameCanvas = ({ isPlaying }: Props) => {
     canvas.width = 600;
     canvas.height = 600;
 
-    boardRef.current = createBoard(100, 10, 10, 35);
+    boardRef.current = createBoard(100, 10, 10, 15);
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const scale = 0.6;
+
+    initBombSprite(); // start loading bomb.png once
 
     const loop = (t: number) => {
       if (lastRef.current === null) lastRef.current = t;
@@ -102,7 +105,9 @@ const drawBoard = (
   for (const idx of board.items) {
     const [x, y] = board.loopPath[Math.floor(idx)];
     drawConveyorTile(ctx, x, y, 100);
-  }
+    drawBomb(ctx, x + 50, y + 50, 60, true);
+    }
+    
 
   ctx.restore();
 };
