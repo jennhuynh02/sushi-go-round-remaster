@@ -9,7 +9,7 @@ import { InstructionsDialog } from "./components/dialogs/InstructionsDialog";
 const App = () => {
   const {
     isPlaying, difficulty, showInstructions, showStory,
-    currentScore, level, lives, timeElapsed, sushiCaught, accuracy, levelProgress,
+    currentScore, level, timeElapsed, sushiCaught, accuracy, levelProgress,
     setDifficulty, togglePlay, restart, scoreUpdate, levelUpdate, livesUpdate,
     onSushiCaught, startFromStory, openInstructions, closeInstructions, openStory, closeStory,
   } = useGameState();
@@ -18,14 +18,13 @@ const App = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-2">
       <div className="max-w-full mx-auto space-y-2">
         <GameHeader
+          currentScore={currentScore}
           isPlaying={isPlaying}
-          onTogglePlay={togglePlay}
+          level={level}
           onRestart={restart}
           onShowInstructions={openInstructions}
           onShowStory={openStory}
-          currentScore={currentScore}
-          level={level}
-          lives={lives}
+          onTogglePlay={togglePlay}
         />
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-2">
           <div className="lg:col-span-5">
