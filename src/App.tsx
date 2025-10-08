@@ -1,9 +1,9 @@
-import { useGameState } from "./hooks/useGameState";
 import GameCanvas from "./components/GameCanvas";
-import { GameTopBar } from "./components/GameTopBar";
 import { GameControls } from "./components/GameControls";
+import { GameTopBar } from "./components/GameTopBar";
 import { StoryIntroduction } from "./components/StoryIntroduction";
 import { InstructionsDialog } from "./components/dialogs/InstructionsDialog";
+import { useGameState } from "./hooks/useGameState";
 
 const App = () => {
   const {
@@ -30,9 +30,9 @@ const App = () => {
   } = useGameState();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-2">
-      <div className="max-w-full mx-auto space-y-2">
-        <div className="rounded-lg border-2 border-slate-500 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-600 text-white p-2 space-y-2">
+    <div className="min-h-screen bg-gradient-to-br from-[#c7b4f8] via-[#d7b9ff] to-[#e7c5ff] p-3">
+      <div className="max-w-full mx-auto space-y-3">
+        <div className="rounded-xl border-2 border-purple-200/40 bg-gradient-to-br from-[#f3e8ff]/90 to-[#fce7f3]/90 p-3 shadow-sm">
           <GameTopBar
             accuracy={accuracy}
             isPlaying={isPlaying}
@@ -47,8 +47,8 @@ const App = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-2">
-          <div className="lg:col-span-5">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-3">
+          <div className="lg:col-span-5 rounded-xl border-2 border-purple-400/40 bg-[#1a102e] p-2">
             <GameCanvas
               isPlaying={isPlaying}
               onLevelUpdate={levelUpdate}
@@ -56,7 +56,8 @@ const App = () => {
               onSushiCaught={onSushiCaught}
             />
           </div>
-          <aside className="lg:col-span-1">
+
+          <aside className="lg:col-span-1 rounded-xl border-2 border-purple-300/40 bg-gradient-to-br from-[#e9d5ff]/50 to-[#fce7f3]/50 p-2">
             <GameControls
               difficulty={difficulty}
               onDifficultyChange={setDifficulty}
@@ -67,9 +68,9 @@ const App = () => {
       </div>
 
       <InstructionsDialog
-        onClose={closeInstructions}
-        onOpenChange={(o) => (o ? openInstructions() : closeInstructions())}
         open={showInstructions}
+        onOpenChange={(o) => (o ? openInstructions() : closeInstructions())}
+        onClose={closeInstructions}
       />
       <StoryIntroduction
         isOpen={showStory}
@@ -79,4 +80,5 @@ const App = () => {
     </div>
   );
 };
+
 export default App;

@@ -1,7 +1,14 @@
 import { memo, useEffect, useRef } from "react";
-import { drawConveyorTile } from '../game/conveyorTile';
+import { drawConveyorTile } from "../game/conveyorTile";
 
-import { createBoard, drawBeltUnderlay, getUnderlayPath, getUnderlayWidth, stepBelt, type BoardState } from "../game/board";
+import {
+  createBoard,
+  drawBeltUnderlay,
+  getUnderlayPath,
+  getUnderlayWidth,
+  stepBelt,
+  type BoardState,
+} from "../game/board";
 import { drawBomb, initBombSprite } from "../game/bombSprite";
 
 type Props = {
@@ -69,7 +76,6 @@ const GameCanvas = ({ isPlaying }: Props) => {
 
 export default memo(GameCanvas);
 
-
 const drawBoard = (
   ctx: CanvasRenderingContext2D,
   board: BoardState,
@@ -82,28 +88,38 @@ const drawBoard = (
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   ctx.scale(scale, scale);
 
-  ctx.fillStyle = "#0f172a";
+  // background — rich deep violet
+  ctx.fillStyle = "#1a102e";
   ctx.fillRect(0, 0, W, H);
 
+  // alternating tiles — subtle purplish tones
   for (let c = 0; c < board.cols; c++) {
     for (let r = 0; r < board.rows; r++) {
       const x = c * board.tileSize;
       const y = r * board.tileSize;
-      ctx.fillStyle = (c + r) % 2 === 0 ? "#1f2937" : "#111827";
+      ctx.fillStyle = (c + r) % 2 === 0 ? "#2b1b47" : "#23153c";
       ctx.fillRect(x, y, board.tileSize, board.tileSize);
     }
   }
 
-  const t = 0, b = H - 100, l = 0, r = W - 100;
-  ctx.fillStyle = "#374151";
+  // soft purple corners
+  const t = 0,
+    b = H - 100,
+    l = 0,
+    r = W - 100;
+  ctx.fillStyle = "#3b275f";
   ctx.fillRect(l, t, 100, 100);
   ctx.fillRect(r, t, 100, 100);
   ctx.fillRect(l, b, 100, 100);
   ctx.fillRect(r, b, 100, 100);
 
-
+  // conveyor underlay with subtle glow
+  ctx.shadowColor = "rgba(126, 91, 239, 0.3)";
+  ctx.shadowBlur = 8;
   drawBeltUnderlay(ctx, getUnderlayPath(board), getUnderlayWidth(board));
+  ctx.shadowBlur = 0;
 
+  // sushi/bombs
   board.items.forEach((idx, i) => {
     const [x, y] = board.loopPath[Math.floor(idx)];
     drawConveyorTile(ctx, x, y, 100);
