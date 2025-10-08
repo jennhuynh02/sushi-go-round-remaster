@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { drawConveyorTile } from '../game/conveyorTile';
 
 import { createBoard, drawBeltUnderlay, getUnderlayPath, getUnderlayWidth, stepBelt, type BoardState } from "../game/board";
@@ -68,7 +68,7 @@ const GameCanvas = ({ isPlaying }: Props) => {
   );
 };
 
-export default GameCanvas;
+export default memo(GameCanvas);
 
 
 const drawBoard = (

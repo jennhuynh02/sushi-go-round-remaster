@@ -5,7 +5,6 @@ import { Scoreboard } from "./components/Scoreboard";
 import { GameControls } from "./components/GameControls";
 import { StoryIntroduction } from "./components/StoryIntroduction";
 import { InstructionsDialog } from "./components/dialogs/InstructionsDialog";
-import { useMemo } from "react";
 
 const App = () => {
   const {
@@ -14,16 +13,6 @@ const App = () => {
     setDifficulty, togglePlay, restart, scoreUpdate, levelUpdate, livesUpdate,
     onSushiCaught, startFromStory, openInstructions, closeInstructions, openStory, closeStory,
   } = useGameState();
-
-  const gameCanvas = useMemo(() => (
-    <GameCanvas
-      isPlaying={isPlaying}
-      onScoreUpdate={scoreUpdate}
-      onLevelUpdate={levelUpdate}
-      onLivesUpdate={livesUpdate}
-      onSushiCaught={onSushiCaught}
-    />
-  ), [isPlaying, scoreUpdate, levelUpdate, livesUpdate, onSushiCaught]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-2">
@@ -40,7 +29,13 @@ const App = () => {
         />
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-2">
           <div className="lg:col-span-5">
-           {gameCanvas}
+            <GameCanvas
+              isPlaying={isPlaying}
+              onScoreUpdate={scoreUpdate}
+              onLevelUpdate={levelUpdate}
+              onLivesUpdate={livesUpdate}
+              onSushiCaught={onSushiCaught}
+            />
           </div>
           <aside className="lg:col-span-1 space-y-2">
             <Scoreboard
