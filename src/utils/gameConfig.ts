@@ -26,3 +26,10 @@ export function computeSpawnDelayMs(difficulty: number, level: number) {
   const ms = computeTickMs(difficulty, level) * 0.95;
   return Math.max(500, Math.round(ms));
 }
+
+export function formatTime(totalSeconds: number): string {
+  if (!Number.isFinite(totalSeconds) || totalSeconds < 0) return "0:00";
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = Math.floor(totalSeconds % 60);
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+}

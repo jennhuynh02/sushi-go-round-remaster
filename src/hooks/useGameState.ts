@@ -1,9 +1,9 @@
-// src/hooks/useGameState.ts
 import { useEffect, useMemo, useState, useCallback } from "react";
 import { levelProgressPct, rollHitAccuracy } from "./../utils/scoring";
 import {
   computeSpawnDelayMs,
   computeTickMs,
+  formatTime,
   ROTATION_SCALE,
 } from "../utils/gameConfig";
 
@@ -110,6 +110,7 @@ export function useGameState() {
     currentScore,
     level,
     lives,
+    formattedTime: formatTime(timeElapsed),
     timeElapsed,
     sushiCaught,
     accuracy,

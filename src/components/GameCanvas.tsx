@@ -6,9 +6,8 @@ import { drawBomb, initBombSprite } from "../game/bombSprite";
 
 type Props = {
   isPlaying: boolean;
-  onScoreUpdate: (n: number) => void;
   onLevelUpdate: (n: number) => void;
-  onLivesUpdate: (n: number) => void;
+  onScoreUpdate: (n: number) => void;
   onSushiCaught: () => void;
 };
 
@@ -101,7 +100,7 @@ const drawBoard = (
   ctx.fillRect(r, t, 100, 100);
   ctx.fillRect(l, b, 100, 100);
   ctx.fillRect(r, b, 100, 100);
-  
+
 
   drawBeltUnderlay(ctx, getUnderlayPath(board), getUnderlayWidth(board));
 
