@@ -6,12 +6,14 @@ import sushiGif from "../assets/sushi_bounce.gif";
 
 type Props = {
   accuracy: number;
+  hasStarted: boolean;
   isPlaying: boolean;
   level: number;
   levelProgress: number;
   onRestart: () => void;
   onShowInstructions: () => void;
   onShowStory: () => void;
+  onStartGame: () => void;
   onTogglePlay: () => void;
   sushiCaught: number;
   timeElapsed: string;
@@ -54,15 +56,26 @@ export const GameTopBar = memo(function GameTopBar({
   onShowInstructions,
   onShowStory,
   onTogglePlay,
+  onStartGame,
+  hasStarted,
   sushiCaught,
   timeElapsed,
 }: Props) {
   const pct = Math.max(0, Math.min(100, levelProgress));
+
+  const handlePlayClick = () => {
+    if (!hasStarted && !isPlaying) {
+      onStartGame();
+    } else {
+      onTogglePlay();
+    }
+  };
+
   const actions = [
     {
       k: "pp",
-      on: onTogglePlay,
-      a: "Play/Pause",
+      on: handlePlayClick,
+      a: isPlaying ? "Pause" : hasStarted ? "Play" : "Start Game",
       i: isPlaying ? <Pause className={icon} /> : <Play className={icon} />,
     },
     { k: "rs", on: onRestart, a: "Restart", i: <RotateCcw className={icon} /> },
@@ -74,6 +87,7 @@ export const GameTopBar = memo(function GameTopBar({
       i: <HelpCircle className={icon} />,
     },
   ];
+
   const stats = [
     { k: "t", l: "⏱", v: timeElapsed },
     { k: "s", l: "🍣", v: sushiCaught },

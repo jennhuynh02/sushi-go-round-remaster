@@ -1,15 +1,13 @@
+import { InstructionsDialog } from "./components/dialogs/InstructionsDialog";
 import GameCanvas from "./components/GameCanvas";
 import { GameControls } from "./components/GameControls";
 import { GameTopBar } from "./components/GameTopBar";
-import { StoryIntroduction } from "./components/StoryIntroduction";
-import { InstructionsDialog } from "./components/dialogs/InstructionsDialog";
 import { useGameState } from "./hooks/useGameState";
 
 const App = () => {
   const {
     accuracy,
     closeInstructions,
-    closeStory,
     difficulty,
     formattedTime,
     isPlaying,
@@ -23,7 +21,6 @@ const App = () => {
     scoreUpdate,
     setDifficulty,
     showInstructions,
-    showStory,
     startFromStory,
     sushiCaught,
     togglePlay,
@@ -35,12 +32,14 @@ const App = () => {
         <div className="rounded-xl border-2 border-purple-200/40 bg-gradient-to-br from-[#f3e8ff]/90 to-[#fce7f3]/90 p-3 shadow-sm">
           <GameTopBar
             accuracy={accuracy}
+            hasStarted={isPlaying || level > 1}
             isPlaying={isPlaying}
             level={level}
             levelProgress={levelProgress}
             onRestart={restart}
             onShowInstructions={openInstructions}
             onShowStory={openStory}
+            onStartGame={startFromStory}
             onTogglePlay={togglePlay}
             sushiCaught={sushiCaught}
             timeElapsed={formattedTime}
@@ -71,11 +70,6 @@ const App = () => {
         open={showInstructions}
         onOpenChange={(o) => (o ? openInstructions() : closeInstructions())}
         onClose={closeInstructions}
-      />
-      <StoryIntroduction
-        isOpen={showStory}
-        onClose={closeStory}
-        onStartGame={startFromStory}
       />
     </div>
   );
