@@ -68,7 +68,7 @@ const GameCanvas = ({ isPlaying }: Props) => {
   return (
     <canvas
       ref={canvasRef}
-      className="w-full h-auto rounded-lg border-4 border-slate-600 bg-slate-900"
+      className="w-full h-auto rounded-lg"
       style={{ aspectRatio: "1", maxHeight: "90vh" }}
     />
   );
