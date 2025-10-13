@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef } from "react";
-import { drawConveyorTile } from "../game/conveyorTile";
+import { drawConveyorTilePurple } from "../game/conveyorTile";
 
 import {
   createBoard,
@@ -122,7 +122,7 @@ const drawBoard = (
   // sushi/bombs
   board.items.forEach((idx, i) => {
     const [x, y] = board.loopPath[Math.floor(idx)];
-    drawConveyorTile(ctx, x, y, 100);
+    drawConveyorTilePurple(ctx, x, y, 100);
     if (i % 5 === 0) drawBomb(ctx, x + 25, y + 25, 50);
   });
 
